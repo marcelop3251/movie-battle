@@ -1,0 +1,20 @@
+spring:
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  r2dbc:
+    url: r2dbc:h2:mem://./battle;mode=mysql
+    username: user
+    password: 123
+    pool:
+      enabled: true
+      initial-size: 10
+      min-idle: 5
+      max-size: 15
+      max-idle-time: 10m
+      validation-depth: remote
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
