@@ -28,6 +28,8 @@ public class RouterConfiguration {
   RouterFunction<?> routes() {
     return route(GET("/healthy"), handlerHealthCheck::healthCheck)
       .andRoute(POST("/quiz"), handlerGamer::startQuiz)
+      .andRoute(GET("/quiz"), handlerGamer::getQuiz)
+      .andRoute(POST("/quiz/answer"), handlerGamer::answerQuiz)
       .filter((request, next) -> {
         return next.handle(request)
           .onErrorResume(exception -> exceptionHandler.handler(exception));

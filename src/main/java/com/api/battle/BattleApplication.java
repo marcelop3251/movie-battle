@@ -27,7 +27,6 @@ public class BattleApplication {
 		initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
 		initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
 
-//
 		return initializer;
 	}
 }

@@ -1,7 +1,7 @@
 package com.api.battle.application.config;
 
-import com.api.battle.resources.repository.entity.Movie;
-import com.api.battle.resources.repository.entity.Quiz;
+import com.api.battle.resources.repository.entity.MovieEntity;
+import com.api.battle.resources.repository.entity.QuizEntity;
 import com.api.battle.resources.repository.spring.MovieRepositorySpring;
 import com.api.battle.resources.repository.spring.QuizRepositorySpring;
 import java.util.ArrayList;
@@ -38,12 +38,12 @@ public class CreateQuiz implements ApplicationListener<ContextRefreshedEvent> {
 
       }
 
-      private List<Quiz> createQuizesFromList(List<Movie> listMovies) {
+      private List<QuizEntity> createQuizesFromList(List<MovieEntity> listMovies) {
         long sequence = 1;
-        List<Quiz> quiz = new ArrayList<>();
+        List<QuizEntity> quiz = new ArrayList<>();
         for (long i = 0; i < listMovies.size(); i = 0) {
           for (int j = 1; j < listMovies.size(); j++) {
-            Quiz o = new Quiz(null, Arrays.asList(sequence, listMovies.get(j).id()));
+            QuizEntity o = new QuizEntity(null, Arrays.asList(sequence, listMovies.get(j).id()));
             quiz.add(o);
           }
           sequence++;
@@ -51,8 +51,4 @@ public class CreateQuiz implements ApplicationListener<ContextRefreshedEvent> {
         }
         return quiz;
       }
-//    }.start();
-
-
-//  }
 }

@@ -7,14 +7,19 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import reactor.core.publisher.Flux;
 
 public class Test {
 
     public static void main(String[] args) {
-      var bcrypt = new BCryptPasswordEncoder();
-      System.out.println(bcrypt.encode("stella"));
+      List<Integer> list = new ArrayList();
+      list.add(1);
+      list.add(2);
 
-
+      Flux.fromArray(list.toArray()).flatMap(result -> {
+        System.out.println(result);
+        return Flux.just(result);
+      }).subscribe();
     }
 }
 

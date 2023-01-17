@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS control_quiz (
 
 CREATE TABLE IF NOT EXISTS quiz_answer (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    control_quiz BIGINT,
+    control_quiz_id BIGINT,
     quiz_id BIGINT,
     hit varchar (3),
-    CONSTRAINT fk_control_quiz_id FOREIGN KEY (control_quiz) REFERENCES control_quiz(id),
+    CONSTRAINT fk_control_quiz_id FOREIGN KEY (control_quiz_id) REFERENCES control_quiz(id),
     CONSTRAINT fk_quiz_answer_id FOREIGN KEY (quiz_id) REFERENCES quiz(id)
 );
 

@@ -1,7 +1,7 @@
 package com.api.battle.application.router;
 
 import com.api.battle.domain.exception.BaseException;
-import com.api.battle.domain.exception.GameStartException;
+
 import com.api.battle.domain.exception.TypeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,7 @@ public class ExceptionHandler {
 
 
   public Mono<ServerResponse> handler(Throwable ex) {
+    System.out.println(ex.getLocalizedMessage());
     HttpErrorDTO httpErrorDTO = buildHttpDto("Internal Server Error", 500);
     if (ex instanceof BaseException) {
       BaseException exception = (BaseException) ex;
@@ -28,7 +29,9 @@ public class ExceptionHandler {
   private HttpErrorDTO handleException(BaseException ex) {
     if (TypeException.GAME_ALREADY_STARTED.equals(ex.getTypeException())) {
       return buildHttpDto(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value());
-    } else {
+    } else if (TypeException.QUIZ_NOT_FOUND.equals(ex.getTypeException())) {
+      return buildHttpDto(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value());
+    }else {
       return buildHttpDto("Internal Server Error", 500);
     }
   }
